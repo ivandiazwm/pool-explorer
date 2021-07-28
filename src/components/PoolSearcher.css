@@ -1,0 +1,14 @@
+.PoolSearcher {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.PoolSearcher__input {
+  width: 100%;
+  max-width: 900px;
+}
+
+.PoolSearcher__input .input {
+  width: 100%;
+}

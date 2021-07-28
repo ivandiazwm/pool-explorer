@@ -1,0 +1,17 @@
+.Topbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(235, 235, 235);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.Topbar__title {
+  font-size: 1.6em;
+  cursor: default;
+  padding: 10px;
+}
+
+.Topbar__button-container {
+  padding: 10px;
+}
