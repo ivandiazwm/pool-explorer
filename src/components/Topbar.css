@@ -15,3 +15,11 @@
 .Topbar__button-container {
   padding: 10px;
 }
+
+.EnvironmentModal__item {
+  margin-bottom: 10px;
+}
+
+.EnvironmentModal__input {
+  width: 500px;
+}
