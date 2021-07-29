@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Icon, Label, Modal, Header, Input, LabelGroup } from 'semantic-ui-react';
 
-import { environments } from '../config';
+import { environments, network } from '../config';
 import { RootState } from '../app/store';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { setEnvironment } from '../slices/appSlice';
@@ -10,10 +10,7 @@ import './Topbar.css';
 function EnvironmentModal() {
   const [open, setOpen] = useState(false);
   const [custom, setCustom] = useState('');
-  const env = useAppSelector((state: RootState) => {
-    console.log(state);
-    return state.app.environment;
-  });
+  const env = useAppSelector((state: RootState) => state.app.environment);
   const dispatch = useAppDispatch();
   const envColor = (env) => env.name === 'Production' ? 'red' : 'purple';
 
@@ -53,6 +50,11 @@ function EnvironmentModal() {
                 {environment.contractAddress}
               </Label>
             </Button>
+            <Button
+                icon="file"
+                as="a"
+                href={`${network.baseExplorerAPI}/address/${environment.contractAddress}`}
+                target="_blank" />
           </div>
         ))}
         <div className="EnvironmentModal__item">

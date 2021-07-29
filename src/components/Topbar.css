@@ -16,8 +16,12 @@
   padding: 10px;
 }
 
+.EnvironmentModal .content {
+  text-align: center;
+}
+
 .EnvironmentModal__item {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .EnvironmentModal__input {

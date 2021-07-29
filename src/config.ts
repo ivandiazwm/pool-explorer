@@ -10,6 +10,7 @@ export const environments = [
 ];
 
 export const network = {
+  ipfs: 'https://ipfs.infura.io/ipfs',
   rpc: 'https://goerli.infura.io/v3/a4ba4d26c1a145999d11d2630ac5eb3c',
   baseExplorerAPI: 'https://goerli.etherscan.io',
 }
