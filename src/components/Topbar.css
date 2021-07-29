@@ -4,6 +4,7 @@
   background-color: rgb(235, 235, 235);
   align-items: center;
   flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .Topbar__title {

@@ -17,5 +17,9 @@
 }
 
 .Agent__name a {
-    color: green;
+  color: green;
+}
+
+.Agent td a {
+  word-break: break-all;
 }

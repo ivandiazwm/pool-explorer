@@ -42,7 +42,11 @@ function PoolSearcher() {
         resultRenderer={({ value }) => <div key={value}>{value}</div>}
         results={results}
         value={inputValue} />
-      <Button content='Search' size="small" style={{marginLeft: 10}} onClick={() => searchPool(inputValue)}/>
+      <Button
+        className="PoolSearcher__button"
+        content='Search'
+        size="small"
+        onClick={() => searchPool(inputValue)} />
     </div>
   );
 }
