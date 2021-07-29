@@ -25,6 +25,8 @@
   margin-bottom: 20px;
 }
 
-.EnvironmentModal__input {
-  width: 500px;
+@media screen and (max-width: 620px) {
+  .EnvironmentModal__item .pointing.basic.label {
+    display: none;
+  }
 }
