@@ -57,26 +57,7 @@ function EnvironmentModal() {
                 target="_blank" />
           </div>
         ))}
-        <div className="EnvironmentModal__item">
-          <Input
-            className="EnvironmentModal__input"
-            onChange={(event) => setCustom(event.target.value)}
-            label={(
-              <Button color="blue" onClick={() => {
-                setOpen(false);
-                dispatch(setEnvironment({
-                  name: 'Custom',
-                  contractAddress: custom
-                }));  
-              }}>
-                <Icon name="fork" />
-                Set custom contract
-              </Button>
-            )}
-            labelPosition="right"
-            />
-        </div>
-    </Modal.Content>
+      </Modal.Content>
     </Modal>
   )
 }

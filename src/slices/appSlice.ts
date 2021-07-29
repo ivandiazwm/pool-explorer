@@ -10,6 +10,8 @@ type Environment = {
 
 export interface AppState {
   environment: Environment,
+  suggestedPools: string[],
+  suggestedPoolsLoading: boolean,
   pool: {
     loading: boolean,
     error: string | null | undefined,
@@ -29,6 +31,8 @@ export interface AppState {
 
 const initialState: AppState = {
   environment: environments[0],
+  suggestedPools: [],
+  suggestedPoolsLoading: false,
   pool: {
     loading: false,
     error: null,
@@ -37,6 +41,14 @@ const initialState: AppState = {
   },
   agents: []
 };
+
+export const loadPoolIds = createAsyncThunk(
+  'app/loadPoolIds',
+  async (contractAddress: string) => {
+    const contract = new ContractInteractor(contractAddress);
+    return await contract.getPoolIds();
+  }
+);
 
 export const loadAgent = createAsyncThunk(
   'app/loadAgent',
@@ -139,6 +151,14 @@ export const appSlice = createSlice({
           fromAddress: payload.from,
           date: payload.date,
         };
+      })
+      .addCase(loadPoolIds.pending, (state) => {
+        state.suggestedPoolsLoading = true;
+        state.suggestedPools = [];
+      })
+      .addCase(loadPoolIds.fulfilled, (state, { payload }) => {
+        state.suggestedPoolsLoading = false;
+        state.suggestedPools = payload;
       })
   },
 });

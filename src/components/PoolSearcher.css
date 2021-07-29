@@ -12,3 +12,11 @@
 .PoolSearcher__input .input {
   width: 100%;
 }
+
+.PoolSearcher[data-loading="true"] .PoolSearcher__input .results .result {
+  cursor: default;
+  pointer-events: none;
+  font-style: italic;
+  color: gray;
+  text-align: center;
+}
