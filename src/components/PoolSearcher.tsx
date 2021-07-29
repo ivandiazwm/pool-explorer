@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Icon, Input, Label, Loader, Search } from 'semantic-ui-react';
+import { Button, Loader, Search } from 'semantic-ui-react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { loadPool, loadPoolIds } from '../slices/appSlice';
 import './PoolSearcher.css';
@@ -14,7 +14,8 @@ function PoolSearcher() {
 
   useEffect(function () {
     dispatch(loadPoolIds(contractAddress));
-  }, [contractAddress]);
+    setInputValue('');
+  }, [dispatch, contractAddress]);
 
   let results = !loading ?
     pools.filter(pool => pool.startsWith(inputValue)).map(pool => ({value: pool})) :

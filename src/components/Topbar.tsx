@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Icon, Label, Modal, Header, Input, LabelGroup } from 'semantic-ui-react';
+import { Button, Icon, Label, Modal } from 'semantic-ui-react';
 
 import { environments, network } from '../config';
 import { RootState } from '../app/store';
@@ -9,7 +9,6 @@ import './Topbar.css';
 
 function EnvironmentModal() {
   const [open, setOpen] = useState(false);
-  const [custom, setCustom] = useState('');
   const env = useAppSelector((state: RootState) => state.app.environment);
   const dispatch = useAppDispatch();
   const envColor = (env) => env.name === 'Production' ? 'red' : 'purple';
@@ -30,7 +29,7 @@ function EnvironmentModal() {
     <Modal
       className="EnvironmentModal"
       onClose={() => setOpen(false)}
-      onOpen={() => {setOpen(true); setCustom('');}}
+      onOpen={() => setOpen(true)}
       open={open}
       trigger={EnvironmentButton}
     >

@@ -20,6 +20,7 @@ function Agent({loading, id, name, reference, version, fromAddress, date}) {
         {name}<span> </span>
         <a
           target="_blank"
+          rel="noreferrer"
           href={`https://ipfs.infura.io/ipfs/${reference}`}>
         ({id})
         </a>
@@ -28,6 +29,7 @@ function Agent({loading, id, name, reference, version, fromAddress, date}) {
       <Table.Cell>
         <a
           target="_blank"
+          rel="noreferrer"
           href={`https://goerli.etherscan.io/address/${fromAddress}`}>
         {fromAddress}
         </a>
