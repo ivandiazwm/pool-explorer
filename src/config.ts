@@ -1,16 +1,16 @@
 export const environments = [
   {
-    name: 'Production',
-    contractAddress: '0x30dB6Af76Ff4A9A30d7f927eFab235a7ea600e22',
+    name: "Production",
+    contractAddress: "0xDF686c48A8Cc5dF43c2b5b3086c4d77E9463Cac0",
   },
   {
-    name: 'Development',
-    contractAddress: '0xBD7F842Cb96dFF147d6b9b4c9f8e56acF76A969B',
+    name: "Development",
+    contractAddress: "0x40EC0E5FB2d22C1Bbf00662635eF8D20E22E8560",
   },
 ];
 
 export const network = {
-  ipfs: 'https://ipfs.infura.io/ipfs',
-  rpc: 'https://goerli.infura.io/v3/a4ba4d26c1a145999d11d2630ac5eb3c',
-  baseExplorerAPI: 'https://goerli.etherscan.io',
-}
+  ipfs: "https://ipfs.infura.io/ipfs",
+  rpc: "https://goerli.infura.io/v3/a4ba4d26c1a145999d11d2630ac5eb3c",
+  baseExplorerAPI: "https://goerli.etherscan.io",
+};
