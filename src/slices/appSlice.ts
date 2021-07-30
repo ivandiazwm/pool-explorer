@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../app/store';
-import { environments, network } from '../config';
-import ContractInteractor from '../lib/ContractInteractor';
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../app/store";
+import { environments, network } from "../config";
+import ContractInteractor from "../lib/ContractInteractor";
 
 type Environment = {
   name: string;
@@ -9,24 +9,24 @@ type Environment = {
 };
 
 export interface AppState {
-  environment: Environment,
-  suggestedPools: string[],
-  suggestedPoolsLoading: boolean,
+  environment: Environment;
+  suggestedPools: string[];
+  suggestedPoolsLoading: boolean;
   pool: {
-    loading: boolean,
-    error: string | null | undefined,
-    id: string,
-    name: string
-  },
+    loading: boolean;
+    error: string | null | undefined;
+    id: string;
+    name: string;
+  };
   agents: {
-    loading: boolean,
-    id: string,
-    name: string,
-    reference: string,
-    version: string,
-    fromAddress: string,
-    date: string,
-  }[],
+    loading: boolean;
+    id: string;
+    name: string;
+    reference: string;
+    version: string;
+    fromAddress: string;
+    date: string;
+  }[];
 }
 
 const initialState: AppState = {
@@ -39,11 +39,11 @@ const initialState: AppState = {
     id: null,
     name: null,
   },
-  agents: []
+  agents: [],
 };
 
 export const loadPoolIds = createAsyncThunk(
-  'app/loadPoolIds',
+  "app/loadPoolIds",
   async (contractAddress: string) => {
     const contract = new ContractInteractor(contractAddress);
     return await contract.getPoolIds();
@@ -51,23 +51,26 @@ export const loadPoolIds = createAsyncThunk(
 );
 
 export const loadAgent = createAsyncThunk(
-  'app/loadAgent',
-  async ({poolId, index}: {poolId: string, index: number}, thunkAPI) => {
+  "app/loadAgent",
+  async ({ poolId, index }: { poolId: string; index: number }, thunkAPI) => {
     // @ts-ignore
     const state: RootState = thunkAPI.getState();
-    const contract = new ContractInteractor(state.app.environment.contractAddress);
+    const contract = new ContractInteractor(
+      state.app.environment.contractAddress
+    );
     const agent = await contract.getAgentAt(poolId, index);
-    const {manifest} = await fetch(`${network.ipfs}/${agent[1]}`)
-      .then(response => {
+    const { manifest } = await fetch(`${network.ipfs}/${agent[3]}`).then(
+      (response) => {
         if (!response.ok) {
-            throw new Error("HTTP error " + response.status);
+          throw new Error("HTTP error " + response.status);
         }
         return response.json();
-      });
+      }
+    );
     return {
       id: agent[0],
       name: manifest.agentId,
-      reference: agent[1],
+      reference: agent[3],
       from: manifest.from,
       version: manifest.version,
       date: manifest.timestamp,
@@ -78,30 +81,32 @@ export const loadAgent = createAsyncThunk(
 );
 
 export const loadPool = createAsyncThunk(
-  'app/loadPool',
+  "app/loadPool",
   async (poolId: string, thunkAPI) => {
-    if(!poolId) {
+    if (!poolId) {
       return {
         poolId: null,
-        agentsLength: 0
+        agentsLength: 0,
       };
     }
     // @ts-ignore
     const state: RootState = thunkAPI.getState();
-    const contract = new ContractInteractor(state.app.environment.contractAddress);
+    const contract = new ContractInteractor(
+      state.app.environment.contractAddress
+    );
     const agentsLength = (await contract.getAgentsLength(poolId)).toNumber();
-    for(let index=0; index < agentsLength; index++) {
-      thunkAPI.dispatch(loadAgent({poolId, index}))
+    for (let index = 0; index < agentsLength; index++) {
+      thunkAPI.dispatch(loadAgent({ poolId, index }));
     }
     return {
       poolId,
-      agentsLength
+      agentsLength,
     };
   }
 );
 
 export const appSlice = createSlice({
-  name: 'app',
+  name: "app",
   initialState,
   reducers: {
     setEnvironment: (state, action: PayloadAction<Environment>) => {
@@ -123,23 +128,25 @@ export const appSlice = createSlice({
       })
       .addCase(loadPool.rejected, (state, action) => {
         state.pool.loading = false;
-        state.pool.error = 'Pool not found';
+        state.pool.error = "Pool not found";
       })
       .addCase(loadPool.fulfilled, (state, action) => {
         state.pool.loading = false;
         state.pool.id = action.payload.poolId;
         state.pool.error = null;
-        state.agents = [...Array(action.payload.agentsLength)].map((_, index) => {
-          return {
-            loading: true,
-            id: '',
-            name: '',
-            reference: '',
-            version: '',
-            fromAddress: '',
-            date: '',
-          };
-        });
+        state.agents = [...Array(action.payload.agentsLength)].map(
+          (_, index) => {
+            return {
+              loading: true,
+              id: "",
+              name: "",
+              reference: "",
+              version: "",
+              fromAddress: "",
+              date: "",
+            };
+          }
+        );
       })
       .addCase(loadAgent.fulfilled, (state, { payload }) => {
         state.agents[payload.index] = {
@@ -159,7 +166,7 @@ export const appSlice = createSlice({
       .addCase(loadPoolIds.fulfilled, (state, { payload }) => {
         state.suggestedPoolsLoading = false;
         state.suggestedPools = payload;
-      })
+      });
   },
 });
 
