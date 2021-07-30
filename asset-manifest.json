@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/pool-explorer/static/css/main.ed9c7251.chunk.css",
-    "main.js": "/pool-explorer/static/js/main.8912435f.chunk.js",
-    "main.js.map": "/pool-explorer/static/js/main.8912435f.chunk.js.map",
+    "main.js": "/pool-explorer/static/js/main.246ad6e3.chunk.js",
+    "main.js.map": "/pool-explorer/static/js/main.246ad6e3.chunk.js.map",
     "runtime-main.js": "/pool-explorer/static/js/runtime-main.e19ec248.js",
     "runtime-main.js.map": "/pool-explorer/static/js/runtime-main.e19ec248.js.map",
     "static/css/2.f879123d.chunk.css": "/pool-explorer/static/css/2.f879123d.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.f879123d.chunk.css",
     "static/js/2.adf518f5.chunk.js",
     "static/css/main.ed9c7251.chunk.css",
-    "static/js/main.8912435f.chunk.js"
+    "static/js/main.246ad6e3.chunk.js"
   ]
 }
