@@ -59,7 +59,6 @@ export const loadAgent = createAsyncThunk(
       state.app.environment.contractAddress
     );
     const agent = await contract.getAgentAt(poolId, index);
-    console.log(agent);
     const { manifest } = await fetch(`${network.ipfs}/${agent[3]}`).then(
       (response) => {
         if (!response.ok) {
